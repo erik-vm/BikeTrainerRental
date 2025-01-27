@@ -40,5 +40,8 @@ public class Product {
 
     @OneToMany(mappedBy = "rentedProduct", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Rental> rentals = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductPrice> productPrices = new HashSet<>();
 }
 
