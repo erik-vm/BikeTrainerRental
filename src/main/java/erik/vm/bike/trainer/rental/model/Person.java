@@ -2,6 +2,7 @@ package erik.vm.bike.trainer.rental.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -29,7 +30,9 @@ public class Person {
     private String lastName;
 
     @NotNull
+    @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
 
     @Column(name = "phone_number")

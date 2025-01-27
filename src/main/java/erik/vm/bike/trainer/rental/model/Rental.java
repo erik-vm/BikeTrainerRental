@@ -2,8 +2,8 @@ package erik.vm.bike.trainer.rental.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.joda.time.DateTime;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -17,14 +17,19 @@ public class Rental {
     private UUID rentalId;
 
     @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
     private Product rentedProduct;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User rentingUser;
 
-    private DateTime rentalStarted;
-    private DateTime rentalFinished;
+    private LocalDateTime rentalStarted;
+    private LocalDateTime rentalFinished;
 
-    private boolean confirmed;
+    @Enumerated(EnumType.STRING)
+    private RentalStatus status;
+
+
 
 }
