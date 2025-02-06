@@ -43,5 +43,20 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private Set<ProductPrice> productPrices = new HashSet<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<ProductImage> images = new HashSet<>();
+
+
+    public void setMainImage(ProductImage image) {
+        if (images.contains(image)) {
+            for (ProductImage img : images) {
+                img.setMainImage(false);
+            }
+            image.setMainImage(true);
+        } else {
+            throw new IllegalArgumentException("Image is not associated with this product.");
+        }
+    }
 }
 

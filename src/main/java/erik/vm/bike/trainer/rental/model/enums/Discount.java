@@ -24,4 +24,12 @@ public enum Discount {
         this.present = present;
     }
 
+    public String getPresentAsString() {
+        return String.format("%.0f%%", present * 100);
+    }
+
+    public String getDisplayName() {
+        return name().replace("_", " ").toLowerCase(); // Converts enum name to readable format
+    }
+
 }
